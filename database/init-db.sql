@@ -1,0 +1,22 @@
+CREATE DATABASE IF NOT EXISTS lab6ece140a;
+
+USE lab6ece140a;
+
+DROP TABLE IF EXISTS Commands;
+
+CREATE TABLE IF NOT EXISTS Commands (
+  id         int AUTO_INCREMENT PRIMARY KEY,
+  message    VARCHAR(32) NOT NULL,
+  completed  boolean DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+DROP TABLE IF EXISTS DetectedObjects;
+
+CREATE TABLE IF NOT EXISTS DetectedObjects (
+    id int AUTO_INCREMENT PRIMARY KEY,
+    object VARCHAR(1000),
+    orientation CHAR(10),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+
