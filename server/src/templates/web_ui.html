@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <title>ECE 140A Lab 6</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="web_ui.css">
+        <script src="web_ui.js"></script>
+    </head>
+    <body>
+          <div class='flexed'>
+            <h1> Drone Controller</h1>
+            <div>
+              <input type="range" min="0" max="100" step='5'
+                value="10" id="magnitude" >
+               <span for="magnitude" id="amount">(deg: 36, move: 50)</span>       
+            </div>
+          </div>
+
+        <!-- Controller -->
+
+        <section class='controls'>
+          <div class='ctrl' data-cmd="takeoff" data-key='t' title='take-off'>&plus;</div>
+          <div class='ctrl' data-cmd="up" data-key='u' title="up"> &uarr; </div>
+          <div class='ctrl' data-cmd="forward" data-key='f' title='forward'>
+            <span>&uarr; </span>
+          </div>
+
+          <div class='ctrl' data-cmd="ccw" data-key='l' title='CCW'> &circlearrowleft; </div>
+          <div class='nopad'>
+            <input type='checkbox' name='video' id='video'>
+            <label class='ctrl' data-cmd='video' data-key='v' id='vlabel' for='video'>🎥</label>
+          </div>
+          <div class='ctrl' data-cmd="cw" data-key='r' title='CW'> &circlearrowright; </div>
+
+          <div class='ctrl' data-cmd="back" data-key='b' title='back'>
+            <span>&darr; </span>
+          </div>
+          <div class='ctrl' data-cmd="down" data-key='d' title='down'> &darr; </div>
+          <div class='ctrl' data-cmd="land" data-key='x' title='land'>&times;</div>
+        </section>
+
+         <div class='radiobtns p25'>
+          <button id='snapshot'>Detect Objects</button>
+
+          <div class="radio">
+            <input id="radio-1" name="orientation" type="radio" value='front' checked>
+            <label for="radio-1" class="radio-label">Front</label>
+          </div>
+
+          <div class="radio">
+            <input id="radio-2" name="orientation" type="radio" value='back'>
+            <label  for="radio-2" class="radio-label">Back</label>
+          </div>
+
+          <div class="radio">
+            <input id="radio-3" name="orientation" type="radio" value='left'>
+            <label for="radio-3" class="radio-label">Left</label>
+          </div>
+
+          <div class="radio">
+            <input id="radio-4" name="orientation" type="radio" value='right'>
+            <label  for="radio-4" class="radio-label">Right</label>
+          </div>
+        </div>
+
+        <section class='snapshots'>
+          <div>
+            <img src='/screenshot.jpg' id='screenshot'>
+          </div>
+          <div>
+            <img src='/detected_objects.jpg' id='detected'>
+          </div>
+        </section>
+
+      <section class = 'grid'>
+
+        <div class = 'grid1'> 
+          <h3>Detected Objects</h3>
+          <section id = 'objectList'>
+          </section>     
+        </div>
+
+        <div class = 'grid2'> 
+          <label class="switch"> 
+            <h6>object follow mode</h6>
+            <input type="checkbox" id = "slide">
+            <span id = "slidespan" class="slider round"></span>
+          </label>
+          </br>
+          <label class="input" for="digit">Pick object from list to locate:</label>
+          <input class="ui" type="text" name="digit" id="input" required>
+          <button onclick="getValue()"> target object </button>    
+        </div>
+        </section>
+
+    </body>
+</html>
