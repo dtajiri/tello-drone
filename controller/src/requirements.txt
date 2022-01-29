@@ -1,0 +1,4 @@
+mysql-connector-python
+opencv-python-headless
+rktellolib==1.0.2
+requests
