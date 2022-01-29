@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  # Pyramid Web Server
+  web-server:
+    build:
+      context: ./server
+    ports:
+      - 8000:1234       # Web server port
+    env_file:
+      ./credentials.env
+    volumes:
+      - ./server/src:/app
+    container_name: lab6-web-server
+
+  # Tello Drone Controller
+  drone-controller:
+    build:
+      context: ./controller
+    ports:
+      - 8889:8889/udp   # UDP control socket
+      - 8890:8890/udp   # UDP state socket
+      - 11111:11111/udp # UDP video stream
+    env_file:
+      ./credentials.env
+    volumes:
+      - ./controller/src:/app
+    container_name: lab6-drone-events
+
+  # Command Queue Database
+  mysql-db:
+    image: mysql:latest
+    restart: always
+    env_file:
+      ./credentials.env
+    ports:
+      - 3306:3306
+    command: --init-file /init-db.sql
+    volumes:
+      - ./database/init-db.sql:/init-db.sql
+      - ./database/persistent_db:/var/lib/mysql
+    container_name: lab6-db
+
+volumes:
+  persistent_db:
